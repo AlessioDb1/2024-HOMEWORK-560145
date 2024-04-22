@@ -121,7 +121,9 @@ public class Borsa {
 			return a;
 		}
 	}
-
+	public Attrezzo[] getAttrezzi() {
+		return this.attrezzi;
+	}
 	
 	public int getNumeroAttrezzi() {	
 		return this.numeroAttrezzi;     
