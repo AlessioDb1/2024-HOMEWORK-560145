@@ -16,7 +16,7 @@ public class ComandoPrendi implements Comando{
 
 	@Override
 	public void esegui(Partita partita) {
-		if(partita.getStanzaCorrente().getNumeroAttrezzi() == 0)
+		if(partita.getStanzaCorrente().getAttrezzi().size() == 0)
 			partita.getIO().mostraMessaggio("Non ci sono oggetti da prendere in questa stanza!");
 		else if(partita.getStanzaCorrente().hasAttrezzo(nomeAttrezzoDaPrendere) == false)
 			partita.getIO().mostraMessaggio("Questo attrezzo non è presente nella stanza!");

@@ -43,10 +43,6 @@ class BorsaTest {
 	void testAddAttrezzoABorsaOltrePesoMax() {
 		assertFalse(creaBorsa(1).addAttrezzo(osso2));
 	}
-	@Test
-	void testAddAttrezzoABorsaPiena() {
-		assertFalse(creaBorsa(11,arrayOsso(10)).addAttrezzo(osso1));
-	}
 	//GetAttrezzo
 	@Test
 	void testGetAttrezzoConBorsaVuota() {
@@ -64,16 +60,16 @@ class BorsaTest {
 	//RemoveAttrezzo
 	void testRemoveAttrezzoConBorsaVuota(){
 		assertNull(creaBorsa(1).removeAttrezzo("osso"));
-		assertEquals(0,this.borsa.getNumeroAttrezzi());
+		assertEquals(0,this.borsa.getAttrezzi().size());
 	}
 	@Test
 	void testRemoveAttrezzoConAttrezzoPresente() {
 		assertEquals("Lancia",creaBorsa(1,"Lancia").removeAttrezzo("Lancia").getNome());
-		assertEquals(0,this.borsa.getNumeroAttrezzi());
+		assertEquals(0,this.borsa.getAttrezzi().size());
 	}
 	@Test
 	void testRemoveAttrezzoConAttrezzoNonPresente() {
 		assertNull(creaBorsa(1,"Spada").removeAttrezzo("Lancia"));
-		assertEquals(1,this.borsa.getNumeroAttrezzi());
+		assertEquals(1,this.borsa.getAttrezzi().size());
 	}
 }

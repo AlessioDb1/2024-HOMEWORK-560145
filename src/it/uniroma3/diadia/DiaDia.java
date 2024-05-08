@@ -13,7 +13,7 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandi;
  * @author  docente di POO 
  *         (da un'idea di Michael Kolling and David J. Barnes) 
  *          
- * @version base
+ * @version base 
  */
 
 public class DiaDia {

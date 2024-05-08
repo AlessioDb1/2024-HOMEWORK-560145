@@ -35,27 +35,16 @@ class ComandoPrendiTest {
 	void testComandoPrendiConAttrezzoPresente() {
 		Comando c = f.costruisciComando("prendi osso");
 		c.esegui(this.partita);
-		assertEquals(0, this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(1,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(0, this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 	//Verifica che "osso" non venga preso dalla stanza attuale
 	@Test
 	void testComandoPrendiConAttrezzoNonPresente() {
 		Comando c = f.costruisciComando("prendi lanterna");
 		c.esegui(this.partita);
-		assertEquals(1,this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(0,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
-	}
-	//Verifica che usando ComandoPrendi non venga preso un attrezzo se la borsa è piena
-	@Test
-	void testComandoPrendiConBorsaPiena() {
-		Comando c = f.costruisciComando("prendi osso");
-		for(int i = 0;i < this.partita.getGiocatore().getBorsa().getAttrezzi().length; i++) {
-			this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada", 1));
-		}
-		c.esegui(this.partita);
-		assertEquals(1,this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(10,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(1,this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(0,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 	//Verifica che usando comandoPrendi non venga preso un attrezzo se la borsa ha già peso massimo
 	@Test
@@ -65,8 +54,8 @@ class ComandoPrendiTest {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada", 10));
 
 		c.esegui(this.partita);
-		assertEquals(1,this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(1,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(1,this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 
 }

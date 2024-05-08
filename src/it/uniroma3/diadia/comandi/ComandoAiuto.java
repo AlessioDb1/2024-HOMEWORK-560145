@@ -8,7 +8,7 @@ import it.uniroma3.diadia.Partita;
 
 public class ComandoAiuto implements Comando{
 
-	static final private String[] elencoComandi = {"vai", "aiuto", "prendi", "posa", "borsa", "guarda", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "prendi", "posa", "borsa:\n-peso (contenuto ordinato per peso)\n-nome (contenuto ordinato per nome)\n-gruppi (contenuto suddiviso in gruppi con stesso peso)", "guarda", "fine"};
 	
 	@Override
 	public void esegui(Partita partita) {

@@ -22,7 +22,7 @@ public class Labirinto {
 		Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1);
 		Attrezzo pass = new Attrezzo ("passpartout",0);
-		Attrezzo spada = new Attrezzo("Spada", 5);
+		Attrezzo spada = new Attrezzo("spada", 1);
 
 		/* crea stanze del labirinto */
 		Stanza atrio = new Stanza("Atrio");

@@ -17,7 +17,7 @@ class StanzaTest {
 	public Stanza stanza(String...stanze) {
 		Stanza stanza = new Stanza("Atrio");
 		for(int i = 0;i<stanze.length;i++) {
-			stanza.setStanza(new Stanza(stanze[i]),direzioni[i], i);
+			stanza.setStanza(new Stanza(stanze[i]),direzioni[i]);
 		}
 		return stanza;
 	}
@@ -61,17 +61,17 @@ class StanzaTest {
 	@Test
 	void testRemoveAttrezzoDaStanzaVuota() {
 		assertFalse(stanzaAttrezzo().removeAttrezzo("osso"));
-		assertEquals(0,this.stanza.getNumeroAttrezzi());
+		assertEquals(0,this.stanza.getAttrezzi().size());
 	}
 	@Test
 	void testRemoveAttrezzoConAttrezzoNonPresente() {
 		assertFalse(stanzaAttrezzo("Spada").removeAttrezzo("osso"));
-		assertEquals(1,this.stanza.getNumeroAttrezzi());
+		assertEquals(1,this.stanza.getAttrezzi().size());
 	}
 	@Test
 	void testRemoveAttrezzoConAttrezzoPresente() {
 		assertTrue(stanzaAttrezzo("Lancia").removeAttrezzo("Lancia"));
-		assertEquals(0,this.stanza.getNumeroAttrezzi());
+		assertEquals(0,this.stanza.getAttrezzi().size());
 	}
 
 	//ImpostaStanzaAdiacente

@@ -29,15 +29,15 @@ class StanzaMagicaTest {
 	void testAddAttrezzoOltreSogliaMagica() {
 		this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("osso", 1));
 		this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("spada", 1));
-		assertEquals("adaps",this.partita.getStanzaCorrente().getAttrezzi()[1].getNome());
-		assertEquals(2, this.partita.getStanzaCorrente().getAttrezzi()[1].getPeso());
+		assertEquals("adaps",this.partita.getStanzaCorrente().getAttrezzi().get(1).getNome());
+		assertEquals(2, this.partita.getStanzaCorrente().getAttrezzi().get(1).getPeso());
 	}
 	
 	@Test
 	void testAddAttrezzoEntroSogliaMagica() {
 		this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("spada", 1));
-		assertEquals("spada",this.partita.getStanzaCorrente().getAttrezzi()[0].getNome());
-		assertEquals(1, this.partita.getStanzaCorrente().getAttrezzi()[0].getPeso());
+		assertEquals("spada",this.partita.getStanzaCorrente().getAttrezzi().get(0).getNome());
+		assertEquals(1, this.partita.getStanzaCorrente().getAttrezzi().get(0).getPeso());
 	}
 
 }

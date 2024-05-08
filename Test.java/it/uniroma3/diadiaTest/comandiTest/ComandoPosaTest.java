@@ -37,8 +37,8 @@ class ComandoPosaTest {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada",1));
 		Comando c = f.costruisciComando("posa spada");
 		c.esegui(this.partita);
-		assertEquals(2, this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(0,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(2, this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(0,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 
 	@Test
@@ -46,8 +46,8 @@ class ComandoPosaTest {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada",1));
 		Comando c = f.costruisciComando("posa osso");
 		c.esegui(this.partita);
-		assertEquals(1, this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(1,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(1, this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 
 	@Test
@@ -58,7 +58,7 @@ class ComandoPosaTest {
 			this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("spada",1));
 		}
 		c.esegui(this.partita);
-		assertEquals(10, this.partita.getStanzaCorrente().getNumeroAttrezzi());
-		assertEquals(1,this.partita.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(10, this.partita.getStanzaCorrente().getAttrezzi().size());
+		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
 	}
 }
