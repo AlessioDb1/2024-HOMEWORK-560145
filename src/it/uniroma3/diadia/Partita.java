@@ -33,6 +33,10 @@ public class Partita {
 		this(labirinto,null);
 	}
 	
+	public void setLabirinto(Labirinto l){
+		labirinto = l;
+	}
+	
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta
 	 * @return vero se partita vinta
@@ -88,4 +92,3 @@ public class Partita {
 		return this.IO;
 	}
 }
-
