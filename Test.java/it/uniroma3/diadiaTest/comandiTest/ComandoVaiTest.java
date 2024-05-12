@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
@@ -18,18 +19,22 @@ class ComandoVaiTest {
 
 	private FabbricaDiComandi f = new FabbricaDiComandiFisarmonica();
 	private Partita partita;
-	private Stanza stanzaIniziale = new Stanza("Atrio");
-	private Stanza stanzaVincente = new Stanza("Biblioteca");
-
+	private Labirinto labirinto;
+	private Stanza stanzaIniziale;
+	private Stanza stanzaVincente;
 
 	@BeforeEach
 	void setup() {
-		Labirinto lab = new Labirinto();
-		lab.setStanzaIniziale(stanzaIniziale);
-		lab.setStanzaVincente(stanzaVincente);
-		stanzaIniziale.impostaStanzaAdiacente("nord", stanzaVincente);
-		stanzaVincente.impostaStanzaAdiacente("sud", stanzaIniziale);
-		this.partita = new Partita( lab ,new IOConsole());
+		this.labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio","sud");
+		this.stanzaIniziale = new Stanza("Atrio");
+		this.stanzaVincente = new Stanza("Biblioteca");
+		this.stanzaIniziale.impostaStanzaAdiacente("nord", stanzaVincente);
+		this.stanzaVincente.impostaStanzaAdiacente("sud", stanzaIniziale);
+		this.partita = new Partita( labirinto ,new IOConsole());
 
 	}
 
@@ -40,7 +45,7 @@ class ComandoVaiTest {
 		String stanzaAttesa = this.stanzaVincente.getDescrizione();
 		assertEquals(stanzaAttesa, this.partita.getStanzaCorrente().getDescrizione());
 	}
-	
+
 	//Verifica che il giocatore non cambi stanza se prova ad andare in una direzione non esistente
 	@Test
 	void testComandoVaiConDirezioneNonPercorribile() {
