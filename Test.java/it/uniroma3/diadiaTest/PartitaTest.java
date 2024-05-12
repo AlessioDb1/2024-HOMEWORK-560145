@@ -1,6 +1,7 @@
 package it.uniroma3.diadiaTest;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,7 @@ class PartitaTest {
 
 	@BeforeEach
 	private void setUp() {
-		this.partita = new Partita(new Labirinto().init());
+		this.partita = new Partita(new LabirintoBuilder().addStanzaIniziale("Atrio"));
 	}
 
 	public Partita partita(boolean vinta,int cfu, boolean finita) {
