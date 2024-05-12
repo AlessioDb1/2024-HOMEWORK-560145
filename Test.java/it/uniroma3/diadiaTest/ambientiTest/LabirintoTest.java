@@ -1,5 +1,6 @@
 package it.uniroma3.diadiaTest.ambientiTest;
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
  
 class LabirintoTest {
 
-	private Labirinto lab = new Labirinto().init();
+	private Labirinto lab = new LabirintoBuilder().addStanzaIniziale("Atrio").addStanzaVincente("Biblioteca");
 	
 	
 	//Verifica che l'inizializzazione del labirinto sia andata a buon fine.
@@ -28,4 +29,3 @@ class LabirintoTest {
 	}
 
 }
-
