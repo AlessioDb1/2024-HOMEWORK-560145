@@ -9,7 +9,7 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandi;
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il metodo gioca
  *
- * Questa  la classe principale crea e istanzia tutte le altre
+ * Questa è la classe principale crea e istanzia tutte le altre
  *
  * @author  docente di POO 
  *         (da un'idea di Michael Kolling and David J. Barnes) 

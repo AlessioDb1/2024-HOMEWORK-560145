@@ -1,8 +1,6 @@
 package it.uniroma3.diadia.attrezzi;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
-import org.w3c.dom.Attr;
 
 import it.uniroma3.diadia.ambienti.Stanza;
 
