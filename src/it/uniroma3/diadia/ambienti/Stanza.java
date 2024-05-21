@@ -1,6 +1,9 @@
 package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.personaggi.AbstractPersonaggio;
+import it.uniroma3.personaggi.Mago;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -23,6 +26,7 @@ public class Stanza {
 	private String nome;
 	private ArrayList<Attrezzo> attrezzi;
 	private Map<String, Stanza> stanzeAdiacenti;
+	private AbstractPersonaggio personaggio = null;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -32,6 +36,7 @@ public class Stanza {
 		this.nome = nome;
 		this.stanzeAdiacenti = new TreeMap<String, Stanza>();
 		this.attrezzi = new ArrayList<Attrezzo>();
+		
 	}
 
 	/**
@@ -83,6 +88,14 @@ public class Stanza {
 	 */
 	public ArrayList<Attrezzo> getAttrezzi() {
 		return this.attrezzi;
+	}
+	
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
+	}
+	
+	public void setPersonaggio(AbstractPersonaggio p) {
+		this.personaggio = p;
 	}
 
 	/**

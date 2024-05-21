@@ -6,7 +6,7 @@ import it.uniroma3.diadia.Partita;
  * Stampa informazioni di aiuto.
  */
 
-public class ComandoAiuto implements Comando{
+public class ComandoAiuto extends AbstractComando{
 
 	static final private String[] elencoComandi = {"vai", "aiuto", "prendi", "posa", "borsa:\n-peso (contenuto ordinato per peso)\n-nome (contenuto ordinato per nome)\n-gruppi (contenuto suddiviso in gruppi con stesso peso)", "guarda", "fine"};
 	
@@ -17,8 +17,7 @@ public class ComandoAiuto implements Comando{
 		partita.getIO().mostraMessaggio("");
 	}
 	
-	@Override
-	public void setParametro(String parametro) {}
+	
 
 	@Override
 	public String getNome() {
@@ -26,9 +25,5 @@ public class ComandoAiuto implements Comando{
 		return "aiuto";
 	}
 
-	@Override
-	public String getParametro() {
-		
-		return null;
-	}
+	
 }

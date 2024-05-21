@@ -6,14 +6,13 @@ import java.util.Set;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoBorsa implements Comando{
+public class ComandoBorsa extends AbstractComando{
 
-	private String criterio;
 
 	@Override
 	public void esegui (Partita partita) {
-		if(criterio != null) {
-			if(criterio.equals("nome")) {
+		if(this.getParametro() != null) {
+			if(this.getParametro().equals("nome")) {
 				Set<Attrezzo> s = partita.getGiocatore().getBorsa().getContenutoOrdinatoPerNome();
 				if(s.size()==0)
 					partita.getIO().mostraMessaggio(partita.getGiocatore().getBorsa().getDescrizione());
@@ -24,7 +23,7 @@ public class ComandoBorsa implements Comando{
 					partita.getIO().mostraMessaggio("("+partita.getGiocatore().getBorsa().getPeso()+"kg/"+partita.getGiocatore().getBorsa().getPesoMax()+"kg)");
 				}
 			}
-			else if (criterio.equals("gruppi")) {
+			else if (this.getParametro().equals("gruppi")) {
 
 				Map<Integer, Set<Attrezzo>> map = partita.getGiocatore().getBorsa().getContenutoRaggruppatoPerPeso();
 				if(map.size()==0)
@@ -41,7 +40,7 @@ public class ComandoBorsa implements Comando{
 					partita.getIO().mostraMessaggio("("+partita.getGiocatore().getBorsa().getPeso()+"kg/"+partita.getGiocatore().getBorsa().getPesoMax()+"kg)");
 				}
 			}
-			else if (criterio.equals("peso")) {
+			else if (this.getParametro().equals("peso")) {
 				partita.getGiocatore().getBorsa().getContenutoOrdinatoPerPeso();
 				partita.getIO().mostraMessaggio(partita.getGiocatore().getBorsa().getDescrizione());
 			}
@@ -51,20 +50,10 @@ public class ComandoBorsa implements Comando{
 	}
 
 	@Override
-	public void setParametro(String parametro) {
-		criterio = parametro;
-	}
-
-	@Override
 	public String getNome() {
 
 		return "borsa";
 	}
 
-	@Override
-	public String getParametro() {
-
-		return criterio;
-	}
 
 }

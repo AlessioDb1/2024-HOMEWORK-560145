@@ -9,31 +9,29 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @param nomeAttrezzo
  */
 
-public class ComandoPosa implements Comando{
+public class ComandoPosa extends AbstractComando{
 	
-	private String nomeAttrezzoDaPosare;
+	
+	
 
 	@Override
 	public void esegui(Partita partita) {
 		if(partita.getGiocatore().getBorsa().isEmpty() == true)
 			partita.getIO().mostraMessaggio("Non c'è nessun oggetto nella borsa.");
-		else if(partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzoDaPosare)== false)
+		else if(partita.getGiocatore().getBorsa().hasAttrezzo(this.getParametro())== false)
 			partita.getIO().mostraMessaggio("Non hai questo oggetto nella tua borsa!");
 		else {
-			Attrezzo attrezzoDaPosare = partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzoDaPosare);
+			Attrezzo attrezzoDaPosare = partita.getGiocatore().getBorsa().getAttrezzo(this.getParametro());
 			if(partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare)==false)
 				partita.getIO().mostraMessaggio("Impossibile posare l'ogetto, nella stanza ce ne sono già troppi.");
 			else {
-				partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzoDaPosare);
+				partita.getGiocatore().getBorsa().removeAttrezzo(this.getParametro());
 				partita.getIO().mostraMessaggio("Oggetto posato correttamente!");
 			}
 		}
 	}
 	
-	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzoDaPosare = parametro;
-	}
+	
 
 	@Override
 	public String getNome() {
@@ -41,9 +39,5 @@ public class ComandoPosa implements Comando{
 		return "posa";
 	}
 
-	@Override
-	public String getParametro() {
-		
-		return this.nomeAttrezzoDaPosare;
-	}
+	
 }

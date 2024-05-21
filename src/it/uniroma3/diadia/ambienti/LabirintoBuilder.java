@@ -3,6 +3,9 @@ package it.uniroma3.diadia.ambienti;
 import java.util.ArrayList;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.personaggi.Cane;
+import it.uniroma3.personaggi.Mago;
+import it.uniroma3.personaggi.Strega;
 
 public class LabirintoBuilder extends Labirinto{
 
@@ -36,6 +39,25 @@ public class LabirintoBuilder extends Labirinto{
 	public LabirintoBuilder addAttrezzo(String nome, int p) {
 		this.stanzaCache.addAttrezzo(new Attrezzo(nome, p));
 		return this;
+	}
+	
+	public LabirintoBuilder addMago(String nome, String presentazione, Attrezzo attrezzo) {
+		Mago m = new Mago(nome, presentazione, attrezzo);
+		this.stanzaCache.setPersonaggio(m);
+		return this;
+	}
+	
+	public LabirintoBuilder addStrega(String nome, String presentazione) {
+		Strega s = new Strega(nome, presentazione);
+		this.stanzaCache.setPersonaggio(s);
+		return this;
+	}
+	
+	public LabirintoBuilder addCane(String attrezzo) {
+		Cane c = new Cane(attrezzo);
+		this.stanzaCache.setPersonaggio(c);
+		return this;
+		
 	}
 
 	public LabirintoBuilder addStanza(String s) {

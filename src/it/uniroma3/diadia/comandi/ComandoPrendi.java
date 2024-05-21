@@ -10,30 +10,25 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @param nomeAttrezzo
  */
 
-public class ComandoPrendi implements Comando{
+public class ComandoPrendi extends AbstractComando{
 	
-	private String nomeAttrezzoDaPrendere;
+	
 
 	@Override
 	public void esegui(Partita partita) {
 		if(partita.getStanzaCorrente().getAttrezzi().size() == 0)
 			partita.getIO().mostraMessaggio("Non ci sono oggetti da prendere in questa stanza!");
-		else if(partita.getStanzaCorrente().hasAttrezzo(nomeAttrezzoDaPrendere) == false)
+		else if(partita.getStanzaCorrente().hasAttrezzo(this.getParametro()) == false)
 			partita.getIO().mostraMessaggio("Questo attrezzo non è presente nella stanza!");
 		else {
-			Attrezzo attrezzoDaPrendere = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzoDaPrendere);
+			Attrezzo attrezzoDaPrendere = partita.getStanzaCorrente().getAttrezzo(this.getParametro());
 			if(partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPrendere)==false)
 				partita.getIO().mostraMessaggio("Impossibile prendere l'ogetto, la capienza della borsa è al limite.");
 			else {
-				partita.getStanzaCorrente().removeAttrezzo(nomeAttrezzoDaPrendere);
+				partita.getStanzaCorrente().removeAttrezzo(this.getParametro());
 				partita.getIO().mostraMessaggio("Oggetto aggiunto correttamente alla borsa!");
 			}
 		}
-	}
-	
-	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzoDaPrendere = parametro;
 	}
 
 	@Override
@@ -42,10 +37,5 @@ public class ComandoPrendi implements Comando{
 		return "prendi";
 	}
 
-	@Override
-	public String getParametro() {
-		
-		return this.nomeAttrezzoDaPrendere;
-				
-	}
+	
 }
