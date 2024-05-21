@@ -1,4 +1,4 @@
-package it.uniroma3.personaggi;
+package it.uniroma3.diadia.personaggi;
 
 import it.uniroma3.diadia.Partita;
 

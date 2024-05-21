@@ -3,9 +3,9 @@ package it.uniroma3.diadia.ambienti;
 import java.util.ArrayList;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.personaggi.Cane;
-import it.uniroma3.personaggi.Mago;
-import it.uniroma3.personaggi.Strega;
+import it.uniroma3.diadia.personaggi.Cane;
+import it.uniroma3.diadia.personaggi.Mago;
+import it.uniroma3.diadia.personaggi.Strega;
 
 public class LabirintoBuilder extends Labirinto{
 

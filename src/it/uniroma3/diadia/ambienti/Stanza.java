@@ -1,8 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.personaggi.AbstractPersonaggio;
-import it.uniroma3.personaggi.Mago;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
+import it.uniroma3.diadia.personaggi.Mago;
 
 import java.util.ArrayList;
 import java.util.Iterator;
