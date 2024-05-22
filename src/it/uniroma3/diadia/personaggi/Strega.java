@@ -1,5 +1,8 @@
 package it.uniroma3.diadia.personaggi;
 
+import java.util.Map;
+import java.util.Set;
+
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
@@ -17,7 +20,36 @@ public class Strega extends AbstractPersonaggio{
 	@Override 
 	public String agisci(Partita partita) {
 		String msg;
-		
+		if(this.haSalutato()) {
+			int max = -1;
+			Stanza piuAttrezzi = null ;
+			Map<String,Stanza> m = partita.getStanzaCorrente().getStanzeAdiacenti();
+			for (Map.Entry<String, Stanza> entry : m.entrySet()) {
+				String key = entry.getKey();
+				Stanza val = entry.getValue();
+				if(val.getAttrezzi().size()>max) {
+					piuAttrezzi = val;
+					max = val.getAttrezzi().size();
+				}
+			}
+			partita.setStanzaCorrente(piuAttrezzi);
+			return MESSAGGIO_SALUTO;
+		}
+		else {
+			int min = 11;
+			Stanza menoAttrezzi = null ;
+			Map<String,Stanza> m = partita.getStanzaCorrente().getStanzeAdiacenti();
+			for (Map.Entry<String, Stanza> entry : m.entrySet()) {
+				String key = entry.getKey();
+				Stanza val = entry.getValue();
+				if(val.getAttrezzi().size()<min) {
+					menoAttrezzi = val;
+					min = val.getAttrezzi().size();
+				}
+			}
+			partita.setStanzaCorrente(menoAttrezzi);
+			return MESSAGGIO_OFFESA;
+		}
 	}
 
 }

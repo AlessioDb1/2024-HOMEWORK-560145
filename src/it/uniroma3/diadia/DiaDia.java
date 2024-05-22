@@ -85,6 +85,7 @@ public class DiaDia {
 		.addStanzaMagica("N12", 2)
 		.addCane("Snoopy", "Volevo dire... Bau.\n(Sembra volere qualcosa, controlla nella tua borsa)")
 		.addStanzaBloccata("LabCampus", "sud", "passpartout")
+		.addStrega("Cal", "Sono la strega responsabile della biblioteca, dovrai ingegnarti per riuscire ad entrare...")
 		.addAttrezzo("anretnal", 2)
 		.addAdiacenza("LabCampus", "Biblioteca", "sud")
 		.addAdiacenza("Biblioteca","LaboratorioCampus", "nord")
