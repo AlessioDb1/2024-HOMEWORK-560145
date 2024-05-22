@@ -10,13 +10,11 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.*;
 
 class ComandoPosaTest {
 
-	private FabbricaDiComandi f = new FabbricaDiComandiFisarmonica();
+	private FabbricaDiComandi f = new FabbricaDiComandiRiflessiva();
 	private Partita partita;
 	private Stanza stanzaTest = new Stanza("Atrio");
 
@@ -35,7 +33,7 @@ class ComandoPosaTest {
 	@Test
 	void testComandoPosaConAttrezzoPresente() {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada",1));
-		Comando c = f.costruisciComando("posa spada");
+		AbstractComando c = f.costruisciComando("posa spada");
 		c.esegui(this.partita);
 		assertEquals(2, this.partita.getStanzaCorrente().getAttrezzi().size());
 		assertEquals(0,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
@@ -44,7 +42,7 @@ class ComandoPosaTest {
 	@Test
 	void testComandoPosaConAttrezzoNonPresente() {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada",1));
-		Comando c = f.costruisciComando("posa osso");
+		AbstractComando c = f.costruisciComando("posa osso");
 		c.esegui(this.partita);
 		assertEquals(1, this.partita.getStanzaCorrente().getAttrezzi().size());
 		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
@@ -53,7 +51,7 @@ class ComandoPosaTest {
 	@Test
 	void testComandoPosaConStanzaPiena() {
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada",1));
-		Comando c = f.costruisciComando("posa spada");
+		AbstractComando c = f.costruisciComando("posa spada");
 		for(int i = 1; i<10;i++) {
 			this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("spada",1));
 		}

@@ -11,16 +11,14 @@ import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.*;
 
 class StanzaBloccataTest {
 
 	private Partita partita;
 	private Stanza stanzaIniziale = new StanzaBloccata("Atrio","nord", "passpartout");
 	private Stanza stanzaVincente = new Stanza("Biblioteca");
-	private FabbricaDiComandi f = new FabbricaDiComandiFisarmonica();
+	private FabbricaDiComandi f = new FabbricaDiComandiRiflessiva();
 
 	@BeforeEach
 	void setUp()  {
@@ -35,7 +33,7 @@ class StanzaBloccataTest {
 	//Verifica che il giocatore non cambi stanza se prova ad andare in una direzione bloccata
 	@Test
 	void testStanzaBloccataSeVaiInDirezioneBloccata() {
-		Comando c = f.costruisciComando("vai nord");
+		AbstractComando c = f.costruisciComando("vai nord");
 		c.esegui(this.partita);
 		String stanzaAttesa = this.stanzaIniziale.getDescrizione();
 		assertEquals(stanzaAttesa, this.partita.getStanzaCorrente().getDescrizione());
@@ -44,7 +42,7 @@ class StanzaBloccataTest {
 	@Test
 	void testStanzaBloccataConDirezionePercorribileGrazieAlPass() {
 		this.partita.getStanzaCorrente().addAttrezzo(new Attrezzo("passpartout", 0));
-		Comando c = f.costruisciComando("vai nord");
+		AbstractComando c = f.costruisciComando("vai nord");
 		c.esegui(this.partita);
 		String stanzaAttesa = this.stanzaVincente.getDescrizione();
 		assertEquals(stanzaAttesa, this.partita.getStanzaCorrente().getDescrizione());

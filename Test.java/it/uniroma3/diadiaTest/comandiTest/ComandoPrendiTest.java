@@ -3,18 +3,15 @@ import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.*;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.comandi.Comando;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ComandoPrendiTest {
-	private FabbricaDiComandi f = new FabbricaDiComandiFisarmonica();
+	private FabbricaDiComandi f = new FabbricaDiComandiRiflessiva();
 	private Partita partita;
 	private Stanza stanzaTest = new Stanza("Atrio");
 
@@ -33,7 +30,7 @@ class ComandoPrendiTest {
 	//Verifica che "osso" venga preso dalla stanza attuale
 	@Test
 	void testComandoPrendiConAttrezzoPresente() {
-		Comando c = f.costruisciComando("prendi osso");
+		AbstractComando c = f.costruisciComando("prendi osso");
 		c.esegui(this.partita);
 		assertEquals(0, this.partita.getStanzaCorrente().getAttrezzi().size());
 		assertEquals(1,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
@@ -41,7 +38,7 @@ class ComandoPrendiTest {
 	//Verifica che "osso" non venga preso dalla stanza attuale
 	@Test
 	void testComandoPrendiConAttrezzoNonPresente() {
-		Comando c = f.costruisciComando("prendi lanterna");
+		AbstractComando c = f.costruisciComando("prendi lanterna");
 		c.esegui(this.partita);
 		assertEquals(1,this.partita.getStanzaCorrente().getAttrezzi().size());
 		assertEquals(0,this.partita.getGiocatore().getBorsa().getAttrezzi().size());
@@ -49,7 +46,7 @@ class ComandoPrendiTest {
 	//Verifica che usando comandoPrendi non venga preso un attrezzo se la borsa ha già peso massimo
 	@Test
 	void testComandoPrendiConBorsaPesoMax() {
-		Comando c = f.costruisciComando("prendi osso");
+		AbstractComando c = f.costruisciComando("prendi osso");
 
 		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("spada", 10));
 

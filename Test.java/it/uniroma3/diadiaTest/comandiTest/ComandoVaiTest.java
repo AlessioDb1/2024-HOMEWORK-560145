@@ -11,13 +11,11 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.*;
 
 class ComandoVaiTest {
 
-	private FabbricaDiComandi f = new FabbricaDiComandiFisarmonica();
+	private FabbricaDiComandi f = new FabbricaDiComandiRiflessiva();
 	private Partita partita;
 	private Labirinto labirinto;
 	private Stanza stanzaIniziale;
@@ -40,7 +38,7 @@ class ComandoVaiTest {
 
 	@Test
 	void testComandoVaiConDirezionePercorribile() {
-		Comando c = f.costruisciComando("vai nord");
+		AbstractComando c = f.costruisciComando("vai nord");
 		c.esegui(this.partita);
 		String stanzaAttesa = this.stanzaVincente.getDescrizione();
 		assertEquals(stanzaAttesa, this.partita.getStanzaCorrente().getDescrizione());
@@ -49,7 +47,7 @@ class ComandoVaiTest {
 	//Verifica che il giocatore non cambi stanza se prova ad andare in una direzione non esistente
 	@Test
 	void testComandoVaiConDirezioneNonPercorribile() {
-		Comando c = f.costruisciComando("vai sud");
+		AbstractComando c = f.costruisciComando("vai sud");
 		c.esegui(this.partita);
 		String stanzaAttesa = this.stanzaIniziale.getDescrizione();
 		assertEquals(stanzaAttesa, this.partita.getStanzaCorrente().getDescrizione());
