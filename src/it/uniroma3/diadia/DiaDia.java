@@ -1,11 +1,7 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.comandi.AbstractComando;
-import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
-import it.uniroma3.diadia.comandi.FabbricaDiComandi;
+import it.uniroma3.diadia.comandi.*;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -87,6 +83,7 @@ public class DiaDia {
 		.addStanzaBuia("N10", "lanterna")
 		.addAttrezzo("passpartout", 0)
 		.addStanzaMagica("N12", 2)
+		.addCane("Snoopy", "Volevo dire... Bau.\n(Sembra volere qualcosa, controlla nella tua borsa)")
 		.addStanzaBloccata("LabCampus", "sud", "passpartout")
 		.addAttrezzo("anretnal", 2)
 		.addAdiacenza("LabCampus", "Biblioteca", "sud")

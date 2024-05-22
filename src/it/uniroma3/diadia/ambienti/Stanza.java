@@ -128,6 +128,8 @@ public class Stanza {
 		for (Attrezzo attrezzo : attrezzi) {
 			risultato.append(attrezzo.toString()+" ");
 		}
+		if(this.getPersonaggio()!=null)
+			risultato.append("\nSembra esserci qualcuno nella stanza : "+this.getPersonaggio().getNome());
 
 		return risultato.toString();
 	}
