@@ -78,6 +78,7 @@ public class DiaDia {
 		Labirinto l = new LabirintoBuilder()
 	    .addStanzaIniziale("Atrio")
 	    .addAttrezzo("osso", 1)
+	    .addMago("Gandalf", "TU,NON PUOIII,PASSAREEEE!!\nScherzo caro amico, spero di esserti d'aiuto.", new Attrezzo("unico anello", 1))
 		.addStanzaVincente("Biblioteca")
 		.addStanza("Bagno")
 		.addAttrezzo("cartaIgienica", 2)
