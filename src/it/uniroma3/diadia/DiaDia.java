@@ -1,6 +1,7 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.*;
 
 /**
@@ -83,10 +84,9 @@ public class DiaDia {
 		.addStanzaBuia("N10", "lanterna")
 		.addAttrezzo("passpartout", 0)
 		.addStanzaMagica("N12", 2)
-		.addCane("Snoopy", "Volevo dire... Bau.\n(Sembra volere qualcosa, controlla nella tua borsa)")
+		.addCane("Snoopy", "Volevo dire... Bau.\n(Sembra volere qualcosa, controlla nella tua borsa)",new Attrezzo("anretnal", 2))
 		.addStanzaBloccata("LabCampus", "sud", "passpartout")
-		.addStrega("Cal", "Sono la strega responsabile della biblioteca, dovrai ingegnarti per riuscire ad entrare...")
-		.addAttrezzo("anretnal", 2)
+		.addStrega("Ursula", "Sono la strega responsabile della biblioteca, dovrai ingegnarti per riuscire ad entrare...")
 		.addAdiacenza("LabCampus", "Biblioteca", "sud")
 		.addAdiacenza("Biblioteca","LaboratorioCampus", "nord")
 		.addAdiacenza("LabCampus", "N12", "ovest")

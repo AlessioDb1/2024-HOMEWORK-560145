@@ -53,8 +53,8 @@ public class LabirintoBuilder extends Labirinto{
 		return this;
 	}
 	
-	public LabirintoBuilder addCane(String nome, String presentaz) {
-		Cane c = new Cane(nome, presentaz);
+	public LabirintoBuilder addCane(String nome, String presentaz, Attrezzo attrezzo) {
+		Cane c = new Cane(nome, presentaz,attrezzo);
 		this.stanzaCache.setPersonaggio(c);
 		return this;
 		

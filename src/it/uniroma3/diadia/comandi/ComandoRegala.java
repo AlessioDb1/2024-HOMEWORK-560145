@@ -1,19 +1,38 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
+import it.uniroma3.diadia.personaggi.Cane;
 
 public class ComandoRegala extends AbstractComando{
 
 	@Override
 	public void esegui(Partita partita) {
-		// TODO Auto-generated method stub
-		
+		if(this.getParametro() == null)
+			partita.getIO().mostraMessaggio("Non hai specificato cosa vuoi regalare!");
+		else if(!partita.getGiocatore().getBorsa().hasAttrezzo(this.getParametro()))
+			partita.getIO().mostraMessaggio("Non puoi regalare qualcosa che non hai...");
+		else {
+			AbstractPersonaggio personaggio = partita.getStanzaCorrente().getPersonaggio();
+			if(personaggio.getClass() == Cane.class) {
+				Cane cane = (Cane)personaggio;
+				String msg = cane.riceviRegalo(partita.getGiocatore().getBorsa().getAttrezzo(this.getParametro()));
+				if(this.getParametro().equals("osso")) {
+					partita.getGiocatore().getBorsa().removeAttrezzo(this.getParametro());
+					partita.getStanzaCorrente().addAttrezzo(cane.getAttrezzo());
+				}
+				else
+					cane.agisci(partita);
+				partita.getIO().mostraMessaggio(msg);
+			}
+		}
+
 	}
 
 	@Override
 	public String getNome() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return "regala";
 	}
 
 }

@@ -201,6 +201,12 @@ public class Stanza {
 	public Map<String, Stanza> getStanzeAdiacenti() {
 		return this.stanzeAdiacenti;
 	}
+	@Override
+	public boolean equals (Object o) {
+		Stanza that = (Stanza)o;
+		if(that == null) return false;
+		return this.getNome().equals(that.getNome());
+	}
 
 	//Metodi per testing
 
