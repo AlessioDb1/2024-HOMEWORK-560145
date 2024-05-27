@@ -2,9 +2,11 @@ package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
-import it.uniroma3.diadia.personaggi.Mago;
+import it.uniroma3.diadia.costanti.*;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +27,7 @@ public class Stanza {
 	private static final int NUMERO_MASSIMO_ATTREZZI = 10;
 	private String nome;
 	private ArrayList<Attrezzo> attrezzi;
-	private Map<String, Stanza> stanzeAdiacenti;
+	private Map<Direzioni, Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio = null;
 
 	/**
@@ -34,7 +36,7 @@ public class Stanza {
 	 */
 	public Stanza(String nome) {
 		this.nome = nome;
-		this.stanzeAdiacenti = new TreeMap<String, Stanza>();
+		this.stanzeAdiacenti = new EnumMap<Direzioni, Stanza>(Direzioni.class);
 		this.attrezzi = new ArrayList<Attrezzo>();
 		
 	}
@@ -47,13 +49,14 @@ public class Stanza {
 	 */
 	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
 		boolean aggiornato = false;
-		if (this.stanzeAdiacenti.containsKey(direzione)) {
-			stanzeAdiacenti.replace(direzione, stanza);
+		Direzioni dir = Direzioni.valueOf(direzione);
+		if (this.stanzeAdiacenti.containsKey(dir)) {
+			stanzeAdiacenti.replace(dir, stanza);
 			aggiornato = true;
 		}
 		if (!aggiornato)
 			if (this.stanzeAdiacenti.size()<4) {
-				this.stanzeAdiacenti.put(direzione, stanza);
+				this.stanzeAdiacenti.put(dir, stanza);
 			}
 	}
 
@@ -62,7 +65,8 @@ public class Stanza {
 	 * @param direzione
 	 */
 	public Stanza getStanzaAdiacente(String direzione) {
-		return this.stanzeAdiacenti.get(direzione);
+		Direzioni dir = Direzioni.valueOf(direzione);
+		return this.stanzeAdiacenti.get(dir);
 		
 	}
 
@@ -121,9 +125,9 @@ public class Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append("Ti trovi in: "+this.nome);
 		risultato.append("\nUscite: ");
-		Set<String> dir = this.stanzeAdiacenti.keySet();
-		for (String direzione : dir)
-			risultato.append(" " + direzione);
+		Set<Direzioni> dir = this.stanzeAdiacenti.keySet();
+		for (Direzioni direzione : dir)
+			risultato.append(" " + direzione.name());
 		risultato.append("\nAttrezzi nella stanza: ");
 		for (Attrezzo attrezzo : attrezzi) {
 			risultato.append(attrezzo.toString()+" ");
@@ -193,12 +197,12 @@ public class Stanza {
 	}
 
 
-	public Set<String> getDirezioni() {
-		Set<String> dir = this.stanzeAdiacenti.keySet();
+	public Set<Direzioni> getDirezioni() {
+		Set<Direzioni> dir = this.stanzeAdiacenti.keySet();
 		return dir;
 	}
 
-	public Map<String, Stanza> getStanzeAdiacenti() {
+	public Map<Direzioni, Stanza> getStanzeAdiacenti() {
 		return this.stanzeAdiacenti;
 	}
 	@Override
@@ -217,7 +221,8 @@ public class Stanza {
 	 * @param indice
 	 */
 	public void setStanza(Stanza stanza,String direzione) {
-		this.stanzeAdiacenti.put(direzione, stanza);
+		Direzioni dir = Direzioni.valueOf(direzione);
+		this.stanzeAdiacenti.put(dir, stanza);
 
 	}
 	/**
