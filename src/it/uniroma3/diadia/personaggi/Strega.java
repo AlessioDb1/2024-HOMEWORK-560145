@@ -28,7 +28,7 @@ public class Strega extends AbstractPersonaggio{
 			Map<Direzioni,Stanza> m = partita.getStanzaCorrente().getStanzeAdiacenti();
 			for (Map.Entry<Direzioni, Stanza> entry : m.entrySet()) {
 				Stanza val = entry.getValue();
-				if(val.getAttrezzi().size()>max) {
+				if(val.getAttrezzi().size()>max && val != partita.getLabirinto().getStanzaVincente()) {
 					piuAttrezzi = val;
 					max = val.getAttrezzi().size();
 				}
@@ -42,7 +42,7 @@ public class Strega extends AbstractPersonaggio{
 			Map<Direzioni,Stanza> m = partita.getStanzaCorrente().getStanzeAdiacenti();
 			for (Map.Entry<Direzioni, Stanza> entry : m.entrySet()) {
 				Stanza val = entry.getValue();
-				if(val.getAttrezzi().size()<min) {
+				if(val.getAttrezzi().size()<min && val != partita.getLabirinto().getStanzaVincente()) {
 					menoAttrezzi = val;
 					min = val.getAttrezzi().size();
 				}

@@ -3,9 +3,9 @@ package it.uniroma3.diadia.ambienti;
 import java.util.ArrayList;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.personaggi.Cane;
-import it.uniroma3.diadia.personaggi.Mago;
-import it.uniroma3.diadia.personaggi.Strega;
+import it.uniroma3.diadia.personaggi.*;
+import it.uniroma3.diadia.costanti.Direzioni;
+import it.uniroma3.diadia.costanti.DirezioniUtils;
 
 public class LabirintoBuilder extends Labirinto{
 
@@ -90,6 +90,7 @@ public class LabirintoBuilder extends Labirinto{
 
 
 	public LabirintoBuilder addAdiacenza(String s1,String s2,String dir) {
+		Direzioni direzione = Direzioni.valueOf(dir);
 		Stanza daSettare = null;
 		Stanza adiacente = null;
 		for (Stanza stanza : stanze) {
@@ -99,6 +100,7 @@ public class LabirintoBuilder extends Labirinto{
 				adiacente = stanza;
 		}
 		daSettare.impostaStanzaAdiacente(dir, adiacente);
+		adiacente.impostaStanzaAdiacente(DirezioniUtils.opposta(direzione).name(), daSettare);
 		return this;
 	}
 }

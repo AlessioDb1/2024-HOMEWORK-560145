@@ -80,6 +80,7 @@ public class DiaDia {
 	    .addAttrezzo("osso", 1)
 	    .addMago("Gandalf", "TU,NON PUOIII,PASSAREEEE!!\nScherzo caro amico, spero di esserti d'aiuto.", new Attrezzo("unico anello", 1))
 		.addStanzaVincente("Biblioteca")
+		.addAttrezzo("Pila di libri", 100)
 		.addStanza("Bagno")
 		.addAttrezzo("cartaIgienica", 2)
 		.addStanzaBuia("N10", "lanterna")
@@ -89,15 +90,10 @@ public class DiaDia {
 		.addStanzaBloccata("LabCampus", "sud", "passpartout")
 		.addStrega("Ursula", "Sono la strega responsabile della biblioteca, dovrai ingegnarti per riuscire ad entrare...")
 		.addAdiacenza("LabCampus", "Biblioteca", "sud")
-		.addAdiacenza("Biblioteca","LaboratorioCampus", "nord")
 		.addAdiacenza("LabCampus", "N12", "ovest")
-		.addAdiacenza("N12", "LabCampus", "est")
 		.addAdiacenza("N12", "Atrio", "nord")
-		.addAdiacenza("Atrio", "N12", "sud")
 		.addAdiacenza("N10", "Atrio", "sud")
-		.addAdiacenza("Atrio", "N10", "nord")
 		.addAdiacenza("Atrio","Bagno","ovest")
-		.addAdiacenza("Bagno","Atrio","est")
 		.getLabirinto();
 		DiaDia gioco = new DiaDia(l,IO);
 		gioco.gioca();
