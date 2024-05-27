@@ -7,7 +7,9 @@ public class Mago extends AbstractPersonaggio {
 	private static final String MESSAGGIO_DONO = "Sei un vero simpaticone, "
 			+ "con una mia magica azione, troverai un nuovo oggetto " + "per il tuo borsone!";
 	private static final String MESSAGGIO_SCUSE = "Mi spiace, ma non ho piu' nulla...";
+	private static final String REGALO = "Che gesto gentile da parte tua. Ecco tieni ho dimezzato il peso dell'oggetto";
 	private Attrezzo attrezzo;
+	private Attrezzo regalo;
 
 	public Mago(String nome, String presentazione, Attrezzo attrezzo) {
 		super(nome, presentazione);
@@ -30,7 +32,11 @@ public class Mago extends AbstractPersonaggio {
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo) {
-		// TODO Auto-generated method stub
-		return null;
+		this.regalo = new Attrezzo(attrezzo.getNome(), attrezzo.getPeso()/2);
+		return REGALO;
+	}
+
+	public Attrezzo getRegalo() {
+		return regalo;
 	}
 }

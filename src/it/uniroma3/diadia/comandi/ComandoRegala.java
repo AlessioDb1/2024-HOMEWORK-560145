@@ -1,8 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
-import it.uniroma3.diadia.personaggi.Cane;
+import it.uniroma3.diadia.personaggi.*;
 
 public class ComandoRegala extends AbstractComando{
 
@@ -23,6 +22,18 @@ public class ComandoRegala extends AbstractComando{
 				}
 				else
 					cane.agisci(partita);
+				partita.getIO().mostraMessaggio(msg);
+			}
+			else if(personaggio.getClass() == Mago.class) {
+				Mago mago = (Mago)personaggio;
+				String msg = personaggio.riceviRegalo(partita.getGiocatore().getBorsa().getAttrezzo(this.getParametro()));
+				partita.getGiocatore().getBorsa().removeAttrezzo(this.getParametro());
+				partita.getStanzaCorrente().addAttrezzo(mago.getRegalo());
+				partita.getIO().mostraMessaggio(msg);
+			}
+			else if(personaggio.getClass() == Strega.class) {
+				String msg = personaggio.riceviRegalo(partita.getGiocatore().getBorsa().getAttrezzo(this.getParametro()));
+				partita.getGiocatore().getBorsa().removeAttrezzo(this.getParametro());
 				partita.getIO().mostraMessaggio(msg);
 			}
 		}

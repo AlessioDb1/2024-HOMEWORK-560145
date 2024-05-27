@@ -12,6 +12,7 @@ public class Strega extends AbstractPersonaggio{
 	private static final String MESSAGGIO_SALUTO = "Data la tua premura nel salutarmi, ti teletrasporterò nella stanza con più oggetti qui vicino";
 	private static final String MESSAGGIO_OFFESA = "Pff, che maleducazione, non mi degni di un saluto e poi prentendi che ti aiuti? SPARISCI!!\n\n"
 			+ "Sei stato teletrasportato...";
+	private final String REGALO = "Un regalo? Per me? HAHAHAHAHAHAHA";
 	
 	
 	public Strega(String nome, String presentazione) {
@@ -53,8 +54,7 @@ public class Strega extends AbstractPersonaggio{
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo) {
-		// TODO Auto-generated method stub
-		return null;
+		return REGALO;
 	}
 
 }
