@@ -1,5 +1,7 @@
 package it.uniroma3.diadia.ambienti;
 
+import it.uniroma3.diadia.costanti.Direzioni;
+
 public class StanzaBloccata extends Stanza{
 
 	private String pass;
@@ -12,12 +14,13 @@ public class StanzaBloccata extends Stanza{
 	}
 	@Override
 	public Stanza getStanzaAdiacente(String direzione) {
+		Direzioni dir = Direzioni.valueOf(direzione);
 		Stanza stanza = null;
-		if(this.getStanzeAdiacenti().containsKey(direzione)) {
+		if(this.getStanzeAdiacenti().containsKey(dir)) {
 			if(direzione.equals(dirBloccata)&& !this.hasAttrezzo(pass))
 				return this;
 			else
-				stanza = this.getStanzeAdiacenti().get(direzione);
+				stanza = this.getStanzeAdiacenti().get(dir);
 		}
 		return stanza;
 	}
