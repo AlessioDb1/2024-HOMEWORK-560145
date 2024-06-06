@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
 import java.util.Scanner;
+import it.uniroma3.diadia.costanti.*;
 
 public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 	@Override
@@ -22,6 +23,17 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 		} catch (Exception e) {
 			comando = new ComandoNonValido();
 		}
+		if(comando.getClass().equals(ComandoVai.class)) {
+			boolean valid = false;
+			String cmp = comando.getParametro();
+			for (int i = 0; i<Direzioni.values().length;i++) {
+				if(cmp.equals(Direzioni.values()[i].name()))
+					valid = true;
+			}
+			if(!valid)
+				comando = new ComandoNonValido();
+		}
+			
 		return comando;
 	}
 }
